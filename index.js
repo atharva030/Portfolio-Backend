@@ -1,12 +1,14 @@
+require('dotenv').config()
 const express = require("express");
 const ContentModel = require("./Models/Content");
 const mongoose = require("mongoose");
+const mongoURI=process.env.MONGO_URL
 const mongoURI =
   "mongodb+srv://atharva:Pankhuri@cluster0.nrgx27f.mongodb.net/?retryWrites=true&w=majority";
 const app = express();
 var cors = require("cors");
 
-const port = 5000;
+let PORT = process.env.PORT;
 const connectionParams={
     useNewUrlParser:true,
     useUnifiedTopology:true
@@ -30,6 +32,9 @@ app.post("/adduser", async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 });
+ app.get("/", (req, res) => {
+    res.status(200).send("Hello server is running").end();
+  });
 mongoose
   .connect(mongoURI, connectionParams)
   .then(() => {
@@ -38,6 +43,6 @@ mongoose
   .catch((error) => {
     console.log("Error: ", error);
   });
-app.listen(port, () => {
-  console.log(`Example app listening on port http://localhost:${port}`);
-});
+app.listen(PORT || 5000, () => {
+   // console.log(`Example app listening on port ${port}`);
+  });
