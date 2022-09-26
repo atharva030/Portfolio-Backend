@@ -1,12 +1,13 @@
 require('dotenv').config()
 const express = require("express");
+var cors = require("cors");
+const app = express();
 const ContentModel = require("./Models/Content");
 const mongoose = require("mongoose");
 const mongoURI=process.env.MONGO_URL
-const mongoURI =
-  "mongodb+srv://atharva:Pankhuri@cluster0.nrgx27f.mongodb.net/?retryWrites=true&w=majority";
-const app = express();
-var cors = require("cors");
+app.use(express.json());
+
+
 
 let PORT = process.env.PORT;
 const connectionParams={
@@ -14,7 +15,7 @@ const connectionParams={
     useUnifiedTopology:true
   }
   app.use(cors());
-app.use(express.json());
+
 
 
 app.post("/adduser", async (req, res) => {
