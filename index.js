@@ -4,7 +4,7 @@ var cors = require("cors");
 const app = express();
 const ContentModel = require("./Models/Content");
 const mongoose = require("mongoose");
-const mongoURI=process.env.MONGO_URL
+const mongoURI="mongodb+srv://atharva:Pankhuri@cluster0.nrgx27f.mongodb.net/?retryWrites=true&w=majority"
 app.use(express.json());
 
 
